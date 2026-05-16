@@ -695,7 +695,7 @@ We will REACH! For Jesus We will REACH!</div>
                 });
             });
 
-            // --- The Extreme Oversize Center Focus Scroll Logic ---
+            // --- The Smart Responsive Center Focus Scroll Logic ---
             function updateFocusScale() {
                 // Select every single item with the class .zoom-item INSIDE the active tab
                 const items = document.querySelectorAll('.tab-content.active .zoom-item');
@@ -704,10 +704,18 @@ We will REACH! For Jesus We will REACH!</div>
                 const viewportCenter = window.innerHeight / 2;
                 const maxDistance = window.innerHeight / 2.2;
 
-                // EXTREME CONFIGURATION TO EXCEED CONTAINER
-                const MAX_SCALE = 1.40;  // 140% normal size. Pops wildly out of the container bounds!
-                const MIN_SCALE = 0.50;  // 50% normal size. Shrinks very small at edges.
-                const MIN_OPACITY = 0.10; // Fades almost entirely out at the edges.
+                // Set dynamic scaling based on the screen width
+                let MAX_SCALE = 1.40;  // 140% normal size. Pops wildly out of the container bounds!
+                let MIN_SCALE = 0.50;  // 50% normal size. Shrinks very small at edges.
+                let MIN_OPACITY = 0.10; // Fades almost entirely out at the edges.
+
+                // If on a tablet or mobile device (< 768px width), ease up on the scaling 
+                // so the text doesn't overflow horizontally off the screen
+                if (window.innerWidth <= 768) {
+                    MAX_SCALE = 1.05; // Just a subtle pop to 105% in the center
+                    MIN_SCALE = 0.85; // Shrinks down to 85% at the edges so it's still somewhat readable
+                    MIN_OPACITY = 0.30;
+                }
 
                 items.forEach(item => {
                     const rect = item.getBoundingClientRect();
