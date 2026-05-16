@@ -9,7 +9,6 @@
     <link rel="apple-touch-icon" href="sclclogo.jpg">
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
@@ -28,19 +27,13 @@
             line-height: 1.6;
             min-height: 100vh;
             position: relative;
-            overflow-x: hidden;
+            overflow-x: hidden; /* Prevents horizontal scrollbars when elements are oversized */
         }
 
         h1, h2, h3, h4 {
             font-family: 'Montserrat', sans-serif;
             text-align: center;
             margin-bottom: 10px;
-        }
-
-        /* --- Animations --- */
-        @keyframes fadeSlideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes popIn {
@@ -117,7 +110,6 @@
             animation: popIn 0.5s ease forwards;
         }
 
-        /* Staggered Navigation Animations */
         .nav-links-container > a:nth-child(1) { animation-delay: 0.8s; }
         .nav-links-container > a:nth-child(2) { animation-delay: 0.9s; }
         .nav-links-container > a:nth-child(3) { animation-delay: 1.0s; }
@@ -125,10 +117,7 @@
         .nav-dropdown { animation-delay: 1.2s; opacity: 0; animation: popIn 0.5s ease forwards;}
         .nav-links-container > a:nth-child(6) { animation-delay: 1.3s; }
 
-        .nav-links-container i {
-            font-size: 1.1em;
-            transition: transform 0.3s ease;
-        }
+        .nav-links-container i { font-size: 1.1em; transition: transform 0.3s ease; }
 
         .nav-links-container a.nav-link:hover, .nav-links-container a.nav-link.active,
         .nav-dropdown:hover .nav-link-btn, .nav-dropdown.active-tab .nav-link-btn {
@@ -144,396 +133,192 @@
         }
 
         /* Dropdown specific styles */
-        .nav-dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
+        .nav-dropdown { position: relative; display: inline-block; }
         .dropdown-menu {
-            display: none;
-            position: absolute;
-            background: rgba(255, 255, 255, 0.95);
-            min-width: 180px;
-            box-shadow: 0px 8px 20px rgba(0,0,0,0.15);
-            z-index: 1001;
-            border-radius: 16px;
-            overflow: hidden;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            margin-top: 8px;
-            flex-direction: column;
+            display: none; position: absolute; background: rgba(255, 255, 255, 0.95);
+            min-width: 180px; box-shadow: 0px 8px 20px rgba(0,0,0,0.15); z-index: 1001;
+            border-radius: 16px; overflow: hidden; top: 100%; left: 50%;
+            transform: translateX(-50%); margin-top: 8px; flex-direction: column;
         }
-
-        .nav-dropdown:hover .dropdown-menu {
-            display: flex;
-        }
-
-        .nav-dropdown.mobile-open .dropdown-menu {
-            display: flex;
-        }
+        .nav-dropdown:hover .dropdown-menu { display: flex; }
+        .nav-dropdown.mobile-open .dropdown-menu { display: flex; }
 
         .dropdown-menu a.nav-link {
-            opacity: 1; /* Reset animation for inner links */
-            animation: none;
-            border-radius: 0;
-            padding: 12px 20px;
-            font-size: 0.9em;
-            justify-content: flex-start;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            opacity: 1; animation: none; border-radius: 0; padding: 12px 20px;
+            font-size: 0.9em; justify-content: flex-start; border-bottom: 1px solid rgba(0,0,0,0.05);
         }
-        
-        .dropdown-menu a.nav-link:last-child {
-            border-bottom: none;
-        }
-
+        .dropdown-menu a.nav-link:last-child { border-bottom: none; }
         .dropdown-menu a.nav-link:hover, .dropdown-menu a.nav-link.active {
-            background-color: #437936;
-            color: white;
-            transform: none;
-            box-shadow: none;
+            background-color: #437936; color: white; transform: none; box-shadow: none;
         }
 
         /* Main Content Container */
         .container {
-            max-width: 900px;
-            margin: 40px auto 60px;
-            background: rgba(245, 245, 245, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.4);
-            padding: 60px 50px;
-            border-radius: 24px; 
-            min-height: 60vh;
-            box-sizing: border-box;
-            opacity: 0;
-            animation: fadeInScale 0.8s ease forwards;
-            z-index: 10;
-            position: relative; 
+            max-width: 900px; margin: 40px auto 60px; background: rgba(245, 245, 245, 0.85);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.8); box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.4);
+            padding: 60px 50px; border-radius: 24px; min-height: 60vh;
+            box-sizing: border-box; opacity: 0; animation: fadeInScale 0.8s ease forwards;
+            /* Remove overflow limitations so elements can exceed container */
+            z-index: 10; position: relative; 
         }
 
-        /* Header Section Animations & Visibility Toggling */
+        /* Header Section */
         .header-section {
-            text-align: center;
-            margin-bottom: 50px;
-            padding-bottom: 30px;
+            text-align: center; margin-bottom: 50px; padding-bottom: 30px;
             border-bottom: 2px dashed rgba(67, 121, 54, 0.4);
             transition: max-height 0.5s ease, opacity 0.4s ease, margin 0.5s ease, padding 0.5s ease;
-            max-height: 500px;
-            overflow: hidden;
-            opacity: 1;
+            max-height: 500px; opacity: 1;
         }
-
         .header-section.hidden {
-            max-height: 0;
-            opacity: 0;
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: none;
+            max-height: 0; opacity: 0; margin-bottom: 0; padding-bottom: 0; border-bottom: none; overflow: hidden;
         }
 
-        .header-section > * {
-            opacity: 0;
-            animation: fadeSlideUp 0.8s ease forwards;
-        }
-
-        .header-section h2 { 
-            color: #e59b35; 
-            font-size: 1.2em;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 5px;
-            text-shadow: 0 1px 2px rgba(255,255,255,0.8);
-            animation-delay: 0.2s; 
-        }
-
-        .header-section h1 { 
-            color: #103216; 
-            font-size: 2em;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 0;
-            margin-bottom: 5px;
-            animation-delay: 0.3s; 
-        }
+        .header-section h2 { color: #e59b35; font-size: 1.2em; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px; text-shadow: 0 1px 2px rgba(255,255,255,0.8); }
+        .header-section h1 { color: #103216; font-size: 2em; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-top: 0; margin-bottom: 5px; }
 
         .mission-reach { 
-            font-size: 3em;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 25px;
-            letter-spacing: -1px;
-            animation-delay: 0.4s; 
-            color: #103216;
-            text-transform: uppercase;
+            font-size: 3em; font-family: 'Montserrat', sans-serif; font-weight: 900;
+            line-height: 1.1; margin-bottom: 25px; letter-spacing: -1px; color: #103216; text-transform: uppercase;
         }
-        
         .mission-text { color: #103216; }
         .reach-text { color: #437936; }
 
         .theme { 
-            font-size: 1.4em;
-            font-weight: 800;
-            color: #103216;
-            background: transparent;
-            display: inline-block;
-            padding: 10px 25px;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            animation-delay: 0.5s; 
+            font-size: 1.4em; font-weight: 800; color: #103216; background: transparent;
+            display: inline-block; padding: 10px 25px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;
         }
-        
-        .theme .theme-label {
-            color: #437936;
-            font-size: 0.8em;
-            display: block;
-            margin-bottom: 5px;
-            font-style: italic;
-        }
-
-        .venue-date { 
-            font-size: 1.05em;
-            color: #444;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            animation-delay: 0.6s; 
-        }
+        .theme .theme-label { color: #437936; font-size: 0.8em; display: block; margin-bottom: 5px; font-style: italic; }
+        .venue-date { font-size: 1.05em; color: #444; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
 
         /* Tab Content Control */
-        .tab-content { display: none; }
+        .tab-content { display: none; padding-bottom: 40vh; /* Extra space to scroll elements to center */ }
         .tab-content.active { display: block; }
 
-        /* Elements inside tabs initially hidden for JS animation */
-        .tab-content h2, 
-        .tab-content .schedule-title, 
-        .tab-content table tr, 
-        .tab-content .coordinators, 
-        .tab-content .lyrics {
-            opacity: 0; 
+        .tab-content h2.day-title {
+            color: #103216; font-size: 2.2em; margin-bottom: 40px; text-align: center;
+            border-bottom: 4px solid #437936; padding-bottom: 10px; display: inline-block;
+        }
+
+        /* --- THE ZOOM ITEMS --- */
+        .zoom-item {
+            will-change: transform, opacity;
+            transform-origin: center center;
+            transform: scale(0.50); /* Start extremely small */
+            opacity: 0.1;
+            transition: box-shadow 0.3s ease;
+            position: relative;
+            z-index: 5; /* Ensure oversized items overlap others properly */
+        }
+        /* Bring the currently centered item to the front so it doesn't get overlapped by adjacent rows */
+        .zoom-item:hover, .zoom-item[style*="scale(1."] {
+            z-index: 20; 
         }
 
         /* Schedule Tables */
-        .tab-content h2 {
-            color: #103216;
-            font-size: 2em;
-            margin-bottom: 30px;
-            text-align: left;
-            border-left: 6px solid #437936;
-            padding-left: 15px;
-        }
-
         .schedule-title {
             background: linear-gradient(135deg, #103216, #215428);
-            color: #ffffff;
-            padding: 12px 20px;
-            border-radius: 12px 12px 0 0;
-            margin-bottom: 0;
-            text-align: left;
-            font-size: 1.2em;
-            font-weight: 600;
+            color: #ffffff; padding: 15px 20px; border-radius: 12px;
+            margin-top: 50px; margin-bottom: 10px; text-align: left;
+            font-size: 1.2em; font-weight: 600;
         }
 
         table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            margin-bottom: 35px;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            border-radius: 0 0 12px 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border: 1px solid rgba(255, 255, 255, 0.7);
-            border-top: none;
+            width: 100%; border-collapse: separate; border-spacing: 0 15px; margin-bottom: 35px;
+            /* NO OVERFLOW HIDDEN HERE so rows can break out of bounds */
         }
 
         th, td {
-            padding: 16px 20px;
-            text-align: left;
-            vertical-align: top;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s ease;
+            padding: 18px 20px; text-align: left; vertical-align: top;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.7);
         }
-
-        table tr:last-child th, table tr:last-child td { border-bottom: none; }
 
         th {
-            background-color: rgba(245, 245, 245, 0.9);
-            color: #103216;
-            width: 35%;
-            font-weight: 700;
+            background-color: rgba(235, 240, 235, 1); color: #103216;
+            width: 35%; font-weight: 700;
+            border-radius: 12px 0 0 12px; border-right: none;
         }
 
-        td { color: #222; font-weight: 500; }
+        td { 
+            color: #222; font-weight: 500; 
+            border-radius: 0 12px 12px 0; border-left: none;
+        }
         
-        table tr:hover td, table tr:hover th { background-color: rgba(255, 255, 255, 1); }
+        table tr.zoom-item:hover td, table tr.zoom-item:hover th { 
+            background-color: #ffffff; 
+            box-shadow: 0 15px 35px rgba(67, 121, 54, 0.3);
+        }
 
         .coordinators {
-            background: rgba(255, 255, 255, 0.7);
-            padding: 20px;
-            border-radius: 12px;
-            font-size: 0.95em;
-            text-align: center;
-            font-weight: 600;
-            color: #103216;
-            margin-top: 30px;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            background: rgba(255, 255, 255, 0.95); padding: 20px; border-radius: 12px;
+            font-size: 0.95em; text-align: center; font-weight: 600; color: #103216;
+            margin-top: 30px; border: 1px solid rgba(0, 0, 0, 0.1); box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         /* Lyrics and Vow Sections */
         .special-section {
-            background: rgba(255, 255, 255, 0.85);
-            padding: 40px;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            background: transparent; padding: 0; border: none; box-shadow: none;
         }
 
-        .special-section h2 {
-            text-align: center;
-            border-left: none;
-            padding-left: 0;
-            color: #437936;
+        .special-section h2.song-title {
+            text-align: center; color: #437936; font-size: 2em; margin-bottom: 40px;
         }
 
-        .lyrics {
-            text-align: center;
-            white-space: pre-wrap;
-            font-size: 1.1em;
-            color: #222;
-            font-weight: 500;
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.8;
-            font-style: italic;
+        .lyrics-stanza {
+            text-align: center; white-space: pre-wrap; font-size: 1.15em; color: #222; font-weight: 500;
+            max-width: 600px; margin: 0 auto 40px auto; line-height: 1.8; font-style: italic;
+            background: rgba(255, 255, 255, 0.95); padding: 25px; border-radius: 16px;
+            border-left: 5px solid #437936; box-shadow: 0 8px 25px rgba(0,0,0,0.1);
         }
 
         /* --- Huge Foreground Watermark --- */
         .body-watermark {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            width: 200vw; 
-            transform: translate(-50%, -50%) rotate(-35deg); 
-            font-size: 11vw; 
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 900;
-            color: rgba(16, 50, 22, 0.12); 
-            white-space: nowrap;
-            pointer-events: none; 
-            user-select: none; 
-            z-index: 100; 
-            text-transform: uppercase;
-            text-align: center;
-            line-height: 1.1;
+            position: fixed; top: 50%; left: 50%; width: 200vw; transform: translate(-50%, -50%) rotate(-35deg); 
+            font-size: 11vw; font-family: 'Montserrat', sans-serif; font-weight: 900; color: rgba(16, 50, 22, 0.12); 
+            white-space: nowrap; pointer-events: none; user-select: none; z-index: 100; text-transform: uppercase; text-align: center; line-height: 1.1;
         }
-
-        .body-watermark span {
-            color: rgba(229, 155, 53, 0.2); 
-            display: block;
-            font-size: 0.4em; 
-            margin-top: -1vw;
-        }
+        .body-watermark span { color: rgba(229, 155, 53, 0.2); display: block; font-size: 0.4em; margin-top: -1vw; }
 
         /* --- Bottom Footer --- */
         .site-footer {
-            width: 100%;
-            text-align: center;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-            font-weight: 400;
-            letter-spacing: 1px;
-            padding-bottom: 25px;
-            z-index: 101; 
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
-            pointer-events: auto; 
-            position: relative; 
+            width: 100%; text-align: center; color: rgba(255, 255, 255, 0.7); font-size: 0.9rem;
+            font-weight: 400; letter-spacing: 1px; padding-bottom: 25px; z-index: 101; pointer-events: auto; position: relative; 
         }
-
-        .site-footer span {
-            color: #000000; 
-            font-weight: 600;
-        }
+        .site-footer span { color: #000000; font-weight: 600; }
 
         /* Responsive */
-        @media (max-width: 1050px) {
-            .nav-wrapper { margin-top: 10px; }
-        }
-
-        /* Mobile Nav specifically at <768px */
+        @media (max-width: 1050px) { .nav-wrapper { margin-top: 10px; } }
         @media (max-width: 768px) {
             .container { margin: 20px; padding: 30px 20px; border-radius: 16px; }
             .header-section h1 { font-size: 1.5em; }
             .mission-reach { font-size: 2em; }
             th, td { display: block; width: 100%; box-sizing: border-box; }
-            th { border-bottom: none; padding-bottom: 5px; }
-            td { padding-top: 5px; padding-bottom: 20px; }
+            th { border-radius: 12px 12px 0 0; border-bottom: none; border-right: 1px solid rgba(255,255,255,0.7); padding-bottom: 5px; }
+            td { border-radius: 0 0 12px 12px; border-top: none; border-left: 1px solid rgba(255,255,255,0.7); padding-top: 5px; padding-bottom: 20px; }
             
-            .body-watermark { 
-                font-size: 16vw; 
-                transform: translate(-50%, -50%) rotate(-55deg); 
-            }
+            .body-watermark { font-size: 16vw; transform: translate(-50%, -50%) rotate(-55deg); }
             .body-watermark span { margin-top: -2vw; }
 
-            .site-footer {
-                font-size: 0.75rem;
-                padding-bottom: 15px;
-            }
+            .site-footer { font-size: 0.75rem; padding-bottom: 15px; }
 
-            /* Turn nav into mobile menu at 768px */
-            nav {
-                width: 100%;
-                border-radius: 20px;
-                padding: 5px;
-            }
-            .menu-toggle {
-                display: flex;
-            }
-            .nav-links-container {
-                display: none; /* Hidden by default */
-                flex-direction: column;
-                width: 100%;
-                gap: 5px;
-                padding-top: 10px;
-                padding-bottom: 10px;
-            }
-            .nav-links-container.show {
-                display: flex;
-            }
-            .nav-links-container a.nav-link, .nav-dropdown .nav-link-btn {
-                width: 100%;
-                box-sizing: border-box;
-                font-size: 0.9em;
-                padding: 12px 15px;
-            }
-            .nav-dropdown {
-                width: 100%;
-            }
-            .dropdown-menu {
-                position: relative;
-                top: 0;
-                left: 0;
-                transform: none;
-                width: 100%;
-                box-shadow: none;
-                background: rgba(0, 0, 0, 0.05);
-                border-radius: 12px;
-                margin-top: 5px;
-            }
-            .dropdown-menu a.nav-link {
-                padding: 10px 20px;
-                background: transparent;
-            }
+            nav { width: 100%; border-radius: 20px; padding: 5px; }
+            .menu-toggle { display: flex; }
+            .nav-links-container { display: none; flex-direction: column; width: 100%; gap: 5px; padding-top: 10px; padding-bottom: 10px; }
+            .nav-links-container.show { display: flex; }
+            .nav-links-container a.nav-link, .nav-dropdown .nav-link-btn { width: 100%; box-sizing: border-box; font-size: 0.9em; padding: 12px 15px; }
+            .nav-dropdown { width: 100%; }
+            .dropdown-menu { position: relative; top: 0; left: 0; transform: none; width: 100%; box-shadow: none; background: rgba(0, 0, 0, 0.05); border-radius: 12px; margin-top: 5px; }
+            .dropdown-menu a.nav-link { padding: 10px 20px; background: transparent; }
         }
     </style>
 </head>
 <body>
+
+    <div class="body-watermark">
+        SCLC CONVENTION <span>Lipa Adventist Academy</span>
+    </div>
 
     <div class="nav-wrapper">
         <nav>
@@ -565,7 +350,7 @@
                     </div>
                 </div>
 
-                <a class="nav-link" href="https://drive.google.com/drive/folders/1e3WSVesU8yKFpxBiIoki5eMPcL_YSgnr" target="_blank">
+                <a class="nav-link" href="https://cloud.sclcadventist.org/s/cMMtCkeLPMo5Tmw" target="_blank">
                     <i class="fa-brands fa-google-drive"></i> Source Files
                 </a>
             </div>
@@ -576,12 +361,11 @@
         <div class="header-section">
             <h2>SCLC-WIDE</h2>
             <h1>SS|PM & NDR-IEL CONVENTION 2026</h1>
-            <span class="theme-label">Theme:</span>
             <div class="mission-reach">
                 <span class="mission-text">COUNT, CARE & <span class="reach-text">REACH</span></span>
             </div>
             <div class="theme">
-                
+                <span class="theme-label">Theme:</span>
                 Grounded in the Bible Focused on the Mission
             </div>
             <div class="venue-date">
@@ -591,163 +375,162 @@
         </div>
 
         <div id="friday" class="tab-content">
-            <h2><i class="fa-solid fa-moon" style="color:#437936; margin-right: 10px;"></i>May 15, 2026 - Friday</h2>
+            <div style="text-align: center;"><h2 class="day-title"><i class="fa-solid fa-moon" style="color:#437936; margin-right: 10px;"></i>May 15, 2026 - Friday</h2></div>
 
-            <h3 class="schedule-title">Pre-Program Schedule</h3>
+            <h3 class="schedule-title zoom-item">Pre-Program Schedule</h3>
             <table>
-                <tr><th>1:00 - 5:00 PM</th><td>Arrival & Registration</td></tr>
-                <tr><th>5:00 - 6:00 PM</th><td>Dinner</td></tr>
-                <tr><th>6:00 - 7:00 PM</th><td>Preparation</td></tr>
+                <tr class="zoom-item"><th>1:00 - 5:00 PM</th><td>Arrival & Registration</td></tr>
+                <tr class="zoom-item"><th>5:00 - 6:00 PM</th><td>Dinner</td></tr>
+                <tr class="zoom-item"><th>6:00 - 7:00 PM</th><td>Preparation</td></tr>
             </table>
 
-            <h3 class="schedule-title" style="margin-top: 40px;">Vesper Worship / Opening Program (7:00 - 9:00 PM)</h3>
+            <h3 class="schedule-title zoom-item">Vesper Worship / Opening Program (7:00 - 9:00 PM)</h3>
             <table>
-                <tr><th>Songleaders</th><td>Sis. Jhezabel Bea Jose<br>Sis. Jelly Mae Sara</td></tr>
-                <tr><th>Opening Prayer</th><td>Bro. Reul Sulit</td></tr>
-                <tr><th>Welcome Remarks</th><td><strong>Pr. Joel Caspe</strong><br><em>(SCLC NDR-IEL/AM Director)</em></td></tr>
-                <tr><th>Musical Offering</th><td>c/o MSPD2</td></tr>
-                <tr><th>To Introduce the Speaker</th><td>Pr. Joel Caspe</td></tr>
-                <tr><th>KEYNOTE ADDRESS</th><td><strong>Pr. Adrian Faina</strong><br><em>(SLPUM Stewardship & 1000MM)</em></td></tr>
-                <tr><th>Musical Offering</th><td>Bro. Jerome Dimaunahan</td></tr>
-                <tr><th>To Introduce the Speaker</th><td>Pr. Relino Urbi<br><em>(SLPUM SS/PM & NDR-IEL Director)</em></td></tr>
-                <tr><th>Session 1</th><td><strong>Dr. Felixian Felicitas</strong><br><em>(SSD Field Secretary)</em></td></tr>
-                <tr><th>Closing Song</th><td>"Mission" Theme Song</td></tr>
-                <tr><th>Closing Prayer</th><td>Bro. Jeran Calsado</td></tr>
+                <tr class="zoom-item"><th>Songleaders</th><td>Sis. Jhezabel Bea Jose<br>Sis. Jelly Mae Sara</td></tr>
+                <tr class="zoom-item"><th>Opening Prayer</th><td>Bro. Reul Sulit</td></tr>
+                <tr class="zoom-item"><th>Welcome Remarks</th><td><strong>Pr. Joel Caspe</strong><br><em>(SCLC NDR-IEL/AM Director)</em></td></tr>
+                <tr class="zoom-item"><th>Musical Offering</th><td>c/o MSPD2</td></tr>
+                <tr class="zoom-item"><th>To Introduce the Speaker</th><td>Pr. Joel Caspe</td></tr>
+                <tr class="zoom-item"><th>KEYNOTE ADDRESS</th><td><strong>Pr. Adrian Faina</strong><br><em>(SLPUM Stewardship & 1000MM)</em></td></tr>
+                <tr class="zoom-item"><th>Musical Offering</th><td>Bro. Jerome Dimaunahan</td></tr>
+                <tr class="zoom-item"><th>To Introduce the Speaker</th><td>Pr. Relino Urbi<br><em>(SLPUM SS/PM & NDR-IEL Director)</em></td></tr>
+                <tr class="zoom-item"><th>Session 1</th><td><strong>Dr. Felixian Felicitas</strong><br><em>(SSD Field Secretary)</em></td></tr>
+                <tr class="zoom-item"><th>Closing Song</th><td>"Mission" Theme Song</td></tr>
+                <tr class="zoom-item"><th>Closing Prayer</th><td>Bro. Jeran Calsado</td></tr>
             </table>
 
-            <div class="coordinators">
+            <div class="coordinators zoom-item">
                 Worship Leaders’ Coordinator: Pr. Erwin Bea
             </div>
-
         </div>
 
         <div id="sabbath-am" class="tab-content">
-            <h2><i class="fa-solid fa-sun" style="color:#437936; margin-right: 10px;"></i>May 16, 2026 - Sabbath Morning</h2>
+            <div style="text-align: center;"><h2 class="day-title"><i class="fa-solid fa-sun" style="color:#437936; margin-right: 10px;"></i>May 16, 2026 - Sabbath Morning</h2></div>
 
-            <h3 class="schedule-title">Morning Preparation</h3>
+            <h3 class="schedule-title zoom-item">Morning Preparation</h3>
             <table>
-                <tr><th>5:00 - 6:00 AM</th><td>Personal preparation</td></tr>
-                <tr><th>6:00 - 7:00 AM</th><td>Breakfast</td></tr>
+                <tr class="zoom-item"><th>5:00 - 6:00 AM</th><td>Personal preparation</td></tr>
+                <tr class="zoom-item"><th>6:00 - 7:00 AM</th><td>Breakfast</td></tr>
             </table>
 
-            <h3 class="schedule-title" style="margin-top: 40px;">Sabbath School Worship (8:00 - 10:00 AM)</h3>
+            <h3 class="schedule-title zoom-item">Sabbath School Worship (8:00 - 10:00 AM)</h3>
             <table>
-                <tr><th>Songleaders</th><td>Sis. Cathleen Kaye Gutierrez<br>Sis. Ruby Rose Docot</td></tr>
-                <tr><th>Pianist</th><td>Bro. Jason Montesines</td></tr>
-                <tr><th>Opening Song</th><td>"Mission" Theme Song</td></tr>
-                <tr><th>Opening Prayer</th><td>Bro. Joas Sabugo</td></tr>
-                <tr><th>Welcome Remarks</th><td><strong>Pr. Rodel Honorica</strong><br><em>(SCLC SS/PM Director)</em></td></tr>
-                <tr><th>Musical Offering</th><td>Encrypted Melody</td></tr>
-                <tr><th>Session 2</th><td><strong>Pr. Relino Urbi</strong><br><em>(SLPUM SS/PM & NDR-IEL Director)</em></td></tr>
-                <tr><th>Session 3</th><td><strong>Dr. Felixian Felicitas</strong><br><em>(SSD Field Secretary)</em></td></tr>
-                <tr>
+                <tr class="zoom-item"><th>Songleaders</th><td>Sis. Cathleen Kaye Gutierrez<br>Sis. Ruby Rose Docot</td></tr>
+                <tr class="zoom-item"><th>Pianist</th><td>Bro. Jason Montesines</td></tr>
+                <tr class="zoom-item"><th>Opening Song</th><td>"Mission" Theme Song</td></tr>
+                <tr class="zoom-item"><th>Opening Prayer</th><td>Bro. Joas Sabugo</td></tr>
+                <tr class="zoom-item"><th>Welcome Remarks</th><td><strong>Pr. Rodel Honorica</strong><br><em>(SCLC SS/PM Director)</em></td></tr>
+                <tr class="zoom-item"><th>Musical Offering</th><td>Encrypted Melody</td></tr>
+                <tr class="zoom-item"><th>Session 2</th><td><strong>Pr. Relino Urbi</strong><br><em>(SLPUM SS/PM & NDR-IEL Director)</em></td></tr>
+                <tr class="zoom-item"><th>Session 3</th><td><strong>Dr. Felixian Felicitas</strong><br><em>(SSD Field Secretary)</em></td></tr>
+                <tr class="zoom-item">
                     <th>Testimony</th>
                     <td>
                         <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                            <strong>SS Teacher:</strong> <span>Sis. Honey Lyn De Asis-Gabia</span>
+                            <strong>SS Teacher:</strong> <span>Sis. Helen Clavio</span>
                         </div>
                         <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
                             <strong>Care Group Leader:</strong> <span>Bro. Domingo Apdua</span>
                         </div>
                     </td>
                 </tr>
-                <tr><th>Musical Offering</th><td>Four Gospel Singers</td></tr>
-                <tr><th>Lesson Review</th><td>Pr. Joshua Aniban</td></tr>
-                <tr><th>Closing Song</th><td>Paaralang Sabado ay Buhay</td></tr>
-                <tr><th>Closing Prayer</th><td>Bro. Dante Laguerta</td></tr>
+                <tr class="zoom-item"><th>Musical Offering</th><td>Four Gospel Singers</td></tr>
+                <tr class="zoom-item"><th>Lesson Review</th><td>Sabbath School by Classes</td></tr>
+                <tr class="zoom-item"><th>Closing Song</th><td>Paaralang Sabado ay Buhay</td></tr>
+                <tr class="zoom-item"><th>Closing Prayer</th><td>Bro. Dante Laguerta</td></tr>
             </table>
             
-            <div class="coordinators">
+            <div class="coordinators zoom-item">
                 Worship Leaders’ Coordinator: Pr. Erwin Bea
             </div>
             
-            <h3 class="schedule-title" style="margin-top: 40px;">Divine Worship (10:30 AM - 12:00 PM)</h3>
+            <h3 class="schedule-title zoom-item">Divine Worship (10:30 AM - 12:00 PM)</h3>
             <table>
-                <tr><th>Welcome & Call to Worship</th><td>Pr. Joel Caspe</td></tr>
-                <tr><th>Singspiration</th><td>Sis. Christine Escalona<br>Sis. Joy Macatangay</td></tr>
-                <tr><th>Introit</th><td>"Banal, Banal, Banal"</td></tr>
-                <tr><th>Sabbath Celebration Hymn</th><td>"Sabbath Naming Mahal"</td></tr>
-                <tr><th>Invocation Speaker</th><td>Speaker</td></tr>
-                <tr><th>Offertory Reading</th><td>Mr. Arvin Mendoza</td></tr>
-                <tr><th>Doxology</th><td>"Ang Ama ay Papurihan"</td></tr>
-                <tr><th>Offertory Prayer</th><td>Pr. Jhon Paolo Roa</td></tr>
-                <tr><th>Hymn of Adoration</th><td>"Misyon"</td></tr>
-                <tr><th>Scripture Reading</th><td>Pr. Benjar Lagrada</td></tr>
-                <tr><th>Hymn of Preparation</th><td>"May Lugar si Hesus Humihiling"</td></tr>
-                <tr><th>Pastoral Prayer</th><td>Pr. Sherwin Pajuelas</td></tr>
-                <tr><th>Hymn of Response</th><td>"Ikaw na Dumirinig ng Hibik"</td></tr>
-                <tr><th>Musical Offering</th><td>Four Gospel Singers</td></tr>
-                <tr><th>To Introduce the Speaker</th><td>Pr. Relino Urbi<br><em>(SLPUM SS/PM & NDR-IEL Director)</em></td></tr>
-                <tr><th>The SPOKEN WORD</th><td><strong>Pr. Arnel Gabin</strong><br><em>(SSD VICE PRESIDENT FOR NDR-IEL)</em></td></tr>
-                <tr><th>Hymn of Consecration</th><td>"We Will Reach"</td></tr>
-                <tr><th>Benediction</th><td>Speaker</td></tr>
-                <tr><th>Anthem of Assurance</th><td>"Si Hesus Kay Lapit ng Dumating"</td></tr>
+                <tr class="zoom-item"><th>Welcome & Call to Worship</th><td>Pr. Joel Caspe</td></tr>
+                <tr class="zoom-item"><th>Singspiration</th><td>Sis. Christine Escalona<br>Sis. Joy Macatangay</td></tr>
+                <tr class="zoom-item"><th>Introit</th><td>"Banal, Banal, Banal"</td></tr>
+                <tr class="zoom-item"><th>Sabbath Celebration Hymn</th><td>"Sabbath Naming Mahal"</td></tr>
+                <tr class="zoom-item"><th>Invocation Speaker</th><td>Speaker</td></tr>
+                <tr class="zoom-item"><th>Offertory Reading</th><td>Mr. Arvin Mendoza</td></tr>
+                <tr class="zoom-item"><th>Doxology</th><td>"Ang Ama ay Papurihan"</td></tr>
+                <tr class="zoom-item"><th>Offertory Prayer</th><td>Pr. Jhon Paolo Roa</td></tr>
+                <tr class="zoom-item"><th>Hymn of Adoration</th><td>"Misyon"</td></tr>
+                <tr class="zoom-item"><th>Scripture Reading</th><td>Pr. Benjar Lagrada</td></tr>
+                <tr class="zoom-item"><th>Hymn of Preparation</th><td>"May Lugar si Hesus Humihiling"</td></tr>
+                <tr class="zoom-item"><th>Pastoral Prayer</th><td>Pr. Sherwin Pajuelas</td></tr>
+                <tr class="zoom-item"><th>Hymn of Response</th><td>"Ikaw na Dumirinig ng Hibik"</td></tr>
+                <tr class="zoom-item"><th>Musical Offering</th><td>Four Gospel Singers</td></tr>
+                <tr class="zoom-item"><th>To Introduce the Speaker</th><td>Pr. Relino Urbi<br><em>(SLPUM SS/PM & NDR-IEL Director)</em></td></tr>
+                <tr class="zoom-item"><th>The SPOKEN WORD</th><td><strong>Pr. Arnel Gabin</strong><br><em>(SSD VICE PRESIDENT FOR NDR-IEL)</em></td></tr>
+                <tr class="zoom-item"><th>Hymn of Consecration</th><td>"We Will Reach"</td></tr>
+                <tr class="zoom-item"><th>Benediction</th><td>Speaker</td></tr>
+                <tr class="zoom-item"><th>Anthem of Assurance</th><td>"Si Hesus Kay Lapit ng Dumating"</td></tr>
             </table>
 
-            <div class="coordinators">
+            <div class="coordinators zoom-item">
                 Worship Leaders’ Coordinator: Pr. Benjie Esquilarga
             </div>
 
-            <h3 class="schedule-title" style="margin-top: 40px;">Noon Break</h3>
+            <h3 class="schedule-title zoom-item">Noon Break</h3>
             <table>
-                <tr><th>12:00 - 1:00 PM</th><td>Lunch</td></tr>
+                <tr class="zoom-item"><th>12:00 - 1:00 PM</th><td>Lunch</td></tr>
             </table>
         </div>
 
         <div id="sabbath-pm" class="tab-content">
-            <h2><i class="fa-solid fa-cloud-sun" style="color:#437936; margin-right: 10px;"></i>May 16, 2026 - Sabbath Afternoon</h2>
+            <div style="text-align: center;"><h2 class="day-title"><i class="fa-solid fa-cloud-sun" style="color:#437936; margin-right: 10px;"></i>May 16, 2026 - Sabbath Afternoon</h2></div>
 
-            <h3 class="schedule-title">Afternoon Worship (1:30 - 4:00 PM)</h3>
+            <h3 class="schedule-title zoom-item">Afternoon Worship (1:30 - 4:00 PM)</h3>
             <table>
-                <tr><th>Musical Rendition</th><td>Four Gospel Singers</td></tr>
-                <tr><th>Opening Prayer</th><td>Pr. Erickson Rigor</td></tr>
-                <tr><th>Welcome Remarks</th><td>Pr. Ramelito Pernia</td></tr>
-                <tr><th>Musical Offering</th><td>c/o Western Batangas 1</td></tr>
-                <tr><th>Promotion Talk of OneVoice27</th><td><strong>Pr. Arnel Gabin</strong><br><em>(SSD Vice President for NDR-IEL)</em></td></tr>
-                <tr><th>Lecture & Workshop</th><td><strong>Pr. Relino Urbi</strong><br><em>(SLPUM SS/PM & NDR-IEL Director)</em></td></tr>
-                <tr><th colspan="2" style="background-color: rgba(67, 121, 54, 0.1); text-align: center; font-weight: bold; padding: 10px;">3:30 PM</th></tr>
-                <tr><th>Recognition & Awarding</th><td>Pr. Joel Caspe<br><em>(SCLC NDR-IEL/AM Director)</em></td></tr>
-                <tr><th>ASI Promotion</th><td>Pr. Rodel Honorica<br><em>(SCLC SS/PM Director)</em></td></tr>
+                <tr class="zoom-item"><th>Musical Rendition</th><td>Four Gospel Singers</td></tr>
+                <tr class="zoom-item"><th>Opening Prayer</th><td>Pr. Erickson Rigor</td></tr>
+                <tr class="zoom-item"><th>Welcome Remarks</th><td>Pr. Ramelito Pernia</td></tr>
+                <tr class="zoom-item"><th>Musical Offering</th><td>c/o Western Batangas 1</td></tr>
+                <tr class="zoom-item"><th>Promotion Talk of OneVoice27</th><td><strong>Pr. Arnel Gabin</strong><br><em>(SSD Vice President for NDR-IEL)</em></td></tr>
+                <tr class="zoom-item"><th>Lecture & Workshop</th><td><strong>Pr. Relino Urbi</strong><br><em>(SLPUM SS/PM & NDR-IEL Director)</em></td></tr>
+                <tr class="zoom-item"><th colspan="2" style="background-color: rgba(67, 121, 54, 0.1); text-align: center; font-weight: bold; border-radius: 12px; padding: 10px;">3:30 PM</th></tr>
+                <tr class="zoom-item"><th>Recognition & Awarding</th><td>Pr. Joel Caspe<br><em>(SCLC NDR-IEL/AM Director)</em></td></tr>
+                <tr class="zoom-item"><th>ASI Promotion</th><td>Pr. Rodel Honorica<br><em>(SCLC SS/PM Director)</em></td></tr>
             </table>
 
-            <h3 class="schedule-title" style="margin-top: 40px;">Commitment Service (4:00 - 4:30 PM)</h3>
+            <h3 class="schedule-title zoom-item">Commitment Service (4:00 - 4:30 PM)</h3>
             <table>
-                <tr><th>Musical Offering</th><td>Four Gospel Singers</td></tr>
-                <tr><th>To Introduce the Speaker</th><td>Pr. Rodel Honorica</td></tr>
-                <tr><th>Message</th><td><strong>Pr. Josue Baldera</strong><br><em>(SCLC President)</em></td></tr>
-                <tr><th>Commitment Prayer</th><td>Speaker</td></tr>
-                <tr><th>Closing Song</th><td>"Misyon" / "We Will REACH!"</td></tr>
-                <tr><th>Closing Prayer</th><td>Pr. Robert Gomez</td></tr>
-                <tr><th colspan="2" style="background-color: rgba(67, 121, 54, 0.1); text-align: center; font-weight: bold; padding: 10px; color: #437936;">4:30 - 5:00 PM: Home Sweet Home</th></tr>
+                <tr class="zoom-item"><th>Musical Offering</th><td>Four Gospel Singers</td></tr>
+                <tr class="zoom-item"><th>To Introduce the Speaker</th><td>Pr. Rodel Honorica</td></tr>
+                <tr class="zoom-item"><th>Message</th><td><strong>Pr. Josue Baldera</strong><br><em>(SCLC President)</em></td></tr>
+                <tr class="zoom-item"><th>Commitment Prayer</th><td>Speaker</td></tr>
+                <tr class="zoom-item"><th>Closing Song</th><td>"Misyon" / "We Will REACH!"</td></tr>
+                <tr class="zoom-item"><th>Closing Prayer</th><td>Pr. Robert Gomez</td></tr>
+                <tr class="zoom-item"><th colspan="2" style="background-color: rgba(67, 121, 54, 0.1); text-align: center; font-weight: bold; padding: 10px; color: #437936; border-radius: 12px;">4:30 - 5:00 PM: Home Sweet Home</th></tr>
             </table>
 
-            <div class="coordinators">
+            <div class="coordinators zoom-item">
                 Worship Leaders’ Coordinator: Pr. Benjie Esquilarga
             </div>
 
-            <div class="coordinators" style="font-style: italic; line-height: 1.8; margin-top: 25px;">
+            <div class="coordinators zoom-item" style="font-style: italic; line-height: 1.8;">
                 <strong>Romans 12:1 KJV</strong><br>
                 "I beseech you therefore, brethren, by the mercies of God, that ye present your bodies a living sacrifice, holy, acceptable unto God, which is your reasonable service."
             </div>
         </div>
 
         <div id="song-mission" class="tab-content special-section">
-            <h2><i class="fa-solid fa-music" style="margin-right: 10px;"></i>Song: MISSION</h2>
-            <div class="lyrics">
-Lyrics & Music by Jader Santos
+            <h2 class="song-title zoom-item"><i class="fa-solid fa-music" style="margin-right: 10px;"></i>MISSION</h2>
+            
+            <div class="lyrics-stanza zoom-item">Lyrics & Music by Jader Santos</div>
 
-We’ve been called to speak, boldly far and near
+            <div class="lyrics-stanza zoom-item">We’ve been called to speak, boldly far and near
 Jesus is the only way
 With a humble heart, let us do our part,
-That’s our mission everyday.
+That’s our mission everyday.</div>
 
-Prophecies fulfilled, there’s no time to waste, 
+            <div class="lyrics-stanza zoom-item">Prophecies fulfilled, there’s no time to waste, 
 Let’s declare that Jesus saves.
 Christ, so loved the world,
 That He gave his life, 
-This truth we shall proclaim.
+This truth we shall proclaim.</div>
 
-<strong>Chorus:</strong>
+            <div class="lyrics-stanza zoom-item"><strong>Chorus:</strong>
 Grounded in the Bible,
 Focused on the mission,
 Till we see Him high in the clouds.
@@ -756,19 +539,19 @@ Thunder will be sounding,
 Here He comes, the King of Kings.
 He descends in glory,
 Majesty and power,
-What a joyful day that will be.
+What a joyful day that will be.</div>
 
-We’ve been called to pray, for the latter rain,
+            <div class="lyrics-stanza zoom-item">We’ve been called to pray, for the latter rain,
 And to walk in unity.
 Hand in hand we stand, all across the land,
-Preaching for the world to see.
+Preaching for the world to see.</div>
 
-He’s the great I Am, He’s the Lord of Lord’s,
+            <div class="lyrics-stanza zoom-item">He’s the great I Am, He’s the Lord of Lord’s,
 Worthy of our highest praise.
 Wonders will be seen, as the Spirit leads,
-If only we remain. 
+If only we remain.</div>
 
-<strong>Chorus:</strong>
+            <div class="lyrics-stanza zoom-item"><strong>Chorus:</strong>
 Grounded in the Bible,
 Focused on the mission,
 Till we see Him high in the clouds.
@@ -779,56 +562,54 @@ He descends in glory,
 Majesty and power,
 What a joyful day that will be.
 
-<em>(Repeat Chorus)</em>
-            </div>
+<em>(Repeat Chorus)</em></div>
         </div>
 
         <div id="song-reach" class="tab-content special-section">
-            <h2><i class="fa-solid fa-music" style="margin-right: 10px;"></i>Song: WE WILL REACH!</h2>
-            <div class="lyrics">
-There’s a world that’s waiting hearts that long to know, 
+            <h2 class="song-title zoom-item"><i class="fa-solid fa-music" style="margin-right: 10px;"></i>WE WILL REACH!</h2>
+            
+            <div class="lyrics-stanza zoom-item">There’s a world that’s waiting hearts that long to know, 
 The love of Jesus shining the grace that overflows. 
 We hear the spirit calling, “Go and share my name” 
-To ev’ry tribe and nation, we’ll proclaim His Reign! 
+To ev’ry tribe and nation, we’ll proclaim His Reign!</div>
 
-<strong>Chorus:</strong>
+            <div class="lyrics-stanza zoom-item"><strong>Chorus:</strong>
 We will REACH! Revived by his pow’r. 
 We will REACH! Equipped for this hour 
 Aligned in his mission, united we stand 
 Transforming communities across ev’ry land. 
 Till the harvest is gathered, the message we’ll preach 
-For Jesus our saviour, we will REACH! 
+For Jesus our saviour, we will REACH!</div>
 
-Teach us, REACH! We will REACH! 
+            <div class="lyrics-stanza zoom-item">Teach us, REACH! We will REACH! 
 Revived by his pow’r We will REACH 
 Equipped for his pow’r for this hour 
 Aligned in his mission united we stand 
 Transforming the nations by his command 
 All the world hears the gospel we’ll teach 
 For Jesus our saviour we will REACH! 
-We will REACH! For Jesus We will REACH! 
+We will REACH! For Jesus We will REACH!</div>
 
-Teach us Lord to follow lift and to restore 
+            <div class="lyrics-stanza zoom-item">Teach us Lord to follow lift and to restore 
 To use our gifts and voices, both near and far overflows. 
 We hear the spirit calling “Go and share” 
-To carry light and mercy where darkness remains.
+To carry light and mercy where darkness remains.</div>
 
-<strong>Chorus:</strong>
+            <div class="lyrics-stanza zoom-item"><strong>Chorus:</strong>
 We will REACH! Equipped for this hour 
 Aligned in his mission, united we stand 
 Transforming communities across ev’ry land. 
 Till the harvest is gathered, the message we’ll preach 
-For Jesus our saviour, we will REACH!
+For Jesus our saviour, we will REACH!</div>
 
-Teach us, REACH! We will REACH! 
+            <div class="lyrics-stanza zoom-item">Teach us, REACH! We will REACH! 
 Revived by his pow’r We will REACH 
 Equipped for his pow’r for this hour 
 Aligned in his mission united we stand 
 Transforming the nations by his command 
 All the world hears the gospel we’ll teach 
 For Jesus our saviour we will REACH! 
-We will REACH! For Jesus We will REACH!
-            </div>
+We will REACH! For Jesus We will REACH!</div>
         </div>
 
     </div>
@@ -838,20 +619,6 @@ We will REACH! For Jesus We will REACH!
     </div>
 
     <script>
-        // Function to trigger cascading animations inside a target tab
-        function animateTabElements(targetId) {
-            const elementsToAnimate = document.querySelectorAll(
-                `#${targetId} h2, #${targetId} .schedule-title, #${targetId} table tr, #${targetId} .coordinators, #${targetId} .lyrics`
-            );
-            
-            elementsToAnimate.forEach((el, index) => {
-                el.style.animation = 'none'; // reset animation
-                el.offsetHeight; // trigger browser reflow
-                // add staggered delay so they cascade down nicely
-                el.style.animation = `fadeSlideUp 0.5s ease forwards ${index * 0.08}s`; 
-            });
-        }
-
         document.addEventListener('DOMContentLoaded', () => {
             const links = document.querySelectorAll('.nav-link');
             const tabs = document.querySelectorAll('.tab-content');
@@ -882,7 +649,6 @@ We will REACH! For Jesus We will REACH!
                     }
 
                     e.preventDefault();
-                    
                     const targetId = this.getAttribute('data-target');
 
                     // Header visibility
@@ -910,11 +676,10 @@ We will REACH! For Jesus We will REACH!
                         const targetElement = document.getElementById(targetId);
                         if(targetElement) {
                             targetElement.classList.add('active');
-                            animateTabElements(targetId);
                         }
                     }
 
-                    // Close mobile menu and dropdown after selection (if on mobile/tablet)
+                    // Close mobile menu and dropdown after selection
                     if (window.innerWidth <= 768) {
                         navLinksContainer.classList.remove('show');
                         navDropdown.classList.remove('mobile-open');
@@ -924,7 +689,55 @@ We will REACH! For Jesus We will REACH!
                         top: document.querySelector('.container').offsetTop - 80,
                         behavior: 'smooth'
                     });
+
+                    // Trigger the math for the newly visible elements immediately
+                    setTimeout(() => window.requestAnimationFrame(updateFocusScale), 50);
                 });
+            });
+
+            // --- The Extreme Oversize Center Focus Scroll Logic ---
+            function updateFocusScale() {
+                // Select every single item with the class .zoom-item INSIDE the active tab
+                const items = document.querySelectorAll('.tab-content.active .zoom-item');
+                if (items.length === 0) return;
+
+                const viewportCenter = window.innerHeight / 2;
+                const maxDistance = window.innerHeight / 2.2;
+
+                // EXTREME CONFIGURATION TO EXCEED CONTAINER
+                const MAX_SCALE = 1.40;  // 140% normal size. Pops wildly out of the container bounds!
+                const MIN_SCALE = 0.50;  // 50% normal size. Shrinks very small at edges.
+                const MIN_OPACITY = 0.10; // Fades almost entirely out at the edges.
+
+                items.forEach(item => {
+                    const rect = item.getBoundingClientRect();
+                    const itemCenter = rect.top + (rect.height / 2);
+
+                    const distanceFromCenter = Math.abs(viewportCenter - itemCenter);
+                    
+                    let normalizedDistance = distanceFromCenter / maxDistance;
+                    if (normalizedDistance > 1) normalizedDistance = 1;
+
+                    const progress = 1 - normalizedDistance;
+                    
+                    // Sine curve makes it ease gently
+                    const smoothProgress = Math.sin(progress * Math.PI / 2);
+
+                    const currentScale = MIN_SCALE + (smoothProgress * (MAX_SCALE - MIN_SCALE));
+                    const currentOpacity = MIN_OPACITY + (smoothProgress * (1 - MIN_OPACITY));
+
+                    item.style.transform = `scale(${currentScale})`;
+                    item.style.opacity = currentOpacity;
+                });
+            }
+
+            // Run once on load, and then every time the user scrolls or resizes
+            updateFocusScale();
+            window.addEventListener('scroll', () => {
+                window.requestAnimationFrame(updateFocusScale);
+            });
+            window.addEventListener('resize', () => {
+                window.requestAnimationFrame(updateFocusScale);
             });
         });
     </script>
